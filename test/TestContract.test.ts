@@ -1,17 +1,17 @@
-import { readFileSync } from "fs"
-import { ethers, upgrades, deployments } from "hardhat"
+import { ethers } from "hardhat"
 import { TestContract } from "../typechain-types"
 
 describe("TestContract", () => {
-  it("test - upgradable", async () => {
+  it("test", async () => {
     const initialValue = "let's start with this"
     const newValue = "surprise!"
 
     const TesContractFactory = await ethers.getContractFactory("TestContract")
-    const testContractInstance = await upgrades.deployProxy(
-      TesContractFactory,
-      [initialValue]
-    )
+    const testContractInstance =
+      (await TesContractFactory.deploy()) as TestContract
+    await testContractInstance.deployed()
+
+    await testContractInstance.initialize(initialValue)
 
     await testContractInstance.setValue(newValue)
   })

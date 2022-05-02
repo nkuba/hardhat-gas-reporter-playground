@@ -1,11 +1,10 @@
-import type { HardhatUserConfig } from "hardhat/config"
 import "@nomiclabs/hardhat-waffle"
 import "@typechain/hardhat"
 import "hardhat-gas-reporter"
 import "@typechain/hardhat"
-import "@openzeppelin/hardhat-upgrades"
-import "@keep-network/hardhat-helpers"
 import "hardhat-deploy"
+
+import type { HardhatUserConfig } from "hardhat/config"
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -15,14 +14,6 @@ const config: HardhatUserConfig = {
       },
     ],
   },
-  networks: {
-    hardhat: {},
-  },
-  //   namedAccounts: {
-  //     deployer: {
-  //       default: 1,
-  //     },
-  //   },
 }
 
 export default config
